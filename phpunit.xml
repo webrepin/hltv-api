@@ -1,0 +1,22 @@
+<phpunit
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/latest/phpunit.xsd"
+        backupGlobals="true"
+        backupStaticAttributes="false"
+        processIsolation="false"
+        stopOnError="false"
+        stopOnFailure="false"
+        stopOnIncomplete="false"
+        stopOnSkipped="false"
+        stopOnRisky="false"
+        timeoutForSmallTests="1"
+        timeoutForMediumTests="10"
+        timeoutForLargeTests="60"
+        verbose="false">
+            <testsuites>
+                <testsuite name="unit">
+                    <directory>tests</directory>
+                    <directory>tests/*/*Test.php</directory>
+                </testsuite>
+            </testsuites>
+        </phpunit>

@@ -1,0 +1,31 @@
+{
+  "name": "webrepin/hltv-api",
+  "description": "PHP Hltv API Client",
+  "keywords": ["csgo","csgoapi", "api", "hltv", "hltv.org", "cs"],
+  "type": "library",
+  "homepage": "https://github.com/webrepin/hltv-api",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Konstantin Repin",
+      "email": "repin.and.co@gmail.com",
+      "homepage": "https://github.com/webrepin"
+    }
+  ],
+  "require": {
+    "php": ">=7.0.0",
+    "ext-curl": "*",
+    "guzzlehttp/guzzle": "~6.0",
+    "sunra/php-simple-html-dom-parser": "1.5.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~5.0",
+    "codeclimate/php-test-reporter": "dev-master"
+  },
+  "suggest": {
+    "guzzlehttp/guzzle": "Allows for implementation of the Guzzle HTTP client"
+  },
+  "autoload": {
+    "psr-0": { "HltvApi\\": "src/" }
+  }
+}
