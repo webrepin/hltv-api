@@ -43,13 +43,17 @@ abstract class Entity
     }
 
     /**
+     * Getting value from data holder
+     *
      * @param $name
+     * @param null $default
+     *
      * @return null
      */
-    protected function getValue($name)
+    protected function getValue($name, $default = null)
     {
         return isset($this->data[$name])
             ? $this->data[$name]
-            : null;
+            : $default;
     }
 }

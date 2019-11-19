@@ -5,6 +5,7 @@ use HltvApi\Entity\Entity;
 use HltvApi\Entity\Match;
 use HltvApi\Entity\MatchDetails;
 use HltvApi\Interfaces\Request;
+use HltvApi\Parsers\MatchDetailsParser;
 use HltvApi\Parsers\OngoingParser;
 use HltvApi\Parsers\Parser;
 use HltvApi\Parsers\ResultsParser;
@@ -173,13 +174,13 @@ class Client implements Request
     }
 
     /**
-     * @param $url
+     * @param $link
      * @return MatchDetails
      * @throws \Exception
      */
-    public function matchDetails($url) : Entity
+    public function matchDetails($link) : Entity
     {
-        $parser = $this->createDataParser(ResultsParser::class, $this->getUrlDetails($url));
+        $parser = $this->createDataParser(MatchDetailsParser::class, $this->getUrlDetails($link));
         return (new BaseWrapper(MatchDetails::class, $parser->parse(), $this))->fetchRow();
     }
 

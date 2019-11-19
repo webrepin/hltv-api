@@ -5,24 +5,25 @@ namespace tests\Entity;
 
 use HltvApi\Client;
 use HltvApi\Entity\Match;
+use HltvApi\Entity\MatchDetails;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class MatchTest
+ * Class MatchDetailsTest
  * @package tests\Entity
  */
-class MatchTest extends TestCase
+class MatchDetailsTest extends TestCase
 {
+
     /**
      * @dataProvider additionalData
+     * @param array $data
+     * @param array $expected
      */
-    public function testMatchEntity(array $data, array $expected)
+    public function testMatchDetailsEntity(array $data, array $expected)
     {
-        $match = new Match($data, new Client());
+        $match = new MatchDetails($data, new Client());
         $this->assertEquals($expected['id'], $match->getId());
-        $this->assertEquals($expected['team1'], $match->getTeam1());
-        $this->assertEquals($expected['team2'], $match->getTeam2());
-        $this->assertEquals($expected['timestamp'], $match->getTimestamp());
     }
 
     /**

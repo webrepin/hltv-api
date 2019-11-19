@@ -52,6 +52,14 @@ class Match extends Entity
     }
 
     /**
+     * @return string
+     */
+    public function getEvent() : string
+    {
+        return $this->getValue('event');
+    }
+
+    /**
      * @return int
      */
     public function getStatus() : int
