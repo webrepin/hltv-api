@@ -25,34 +25,7 @@ class ClientTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        /*$client
-            ->method('sendRequest')
-            ->with($this->equalTo(Client::BASE_URL . '/results'))
-            ->willReturn(get_contents('tests/data/results.html'));*/
-
         return $client;
-    }
-
-    /**
-     * @dataProvider parserDataProvider
-     *
-     * @param $type
-     * @param $expected
-     * @return void
-     * @throws \Exception
-     */
-    public function testDataParser($type, $expected) : void
-    {
-        /** @var Client $client */
-        $client = $this->makeClient();
-        $client
-            ->method('sendRequest')
-            ->with($this->equalTo(Client::BASE_URL . '/matches'))
-            ->willReturn(get_contents('tests/data/matches.html'));
-
-        $data = $client->createDataParser($type, Client::BASE_URL . '/matches')->parse();
-
-        $this->assertEquals($expected, $data);
     }
 
     /**
@@ -89,16 +62,14 @@ class ClientTest extends TestCase
         ];
     }
 
-
-//    /**
-//     * @return void
-//     */
-//    public function testUpcomingMatches() : void
-//    {
-//        $client = $this->makeClient();
-//        $this->assertSame(get_contents('data/upcoming.html'), $client->createRequest());
-//        $this->assertNotEmpty($client->upcomingMatchesList());
-//
-//    }
+    /**
+     * @return void
+     */
+    public function testClient() : void
+    {
+        $this->markTestIncomplete(
+            'Test Client not compete'
+        );
+    }
 
 }
