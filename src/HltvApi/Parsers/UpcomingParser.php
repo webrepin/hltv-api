@@ -35,7 +35,7 @@ class UpcomingParser extends Parser
         $data = [];
         /** @var simple_html_dom_node[] $items */
         foreach ($items as $item){
-            $url = $item->getAttribute('href');
+            $url = $item->find('.a-reset', 0)->getAttribute('href');
             $id = $this->getId($url);
             $type = $this->getType(trim($item->find('.map-text', 0)->plaintext));
             $team1 = trim($item->find('.team-cell', 0)->plaintext);

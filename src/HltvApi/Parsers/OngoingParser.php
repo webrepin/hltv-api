@@ -17,7 +17,7 @@ class OngoingParser extends Parser
      * @param $type
      * @return int|null
      */
-    public function getType($type) : int
+    public function getType($type)
     {
         $lt = null;
         switch ($type) {

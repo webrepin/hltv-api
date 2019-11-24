@@ -32,7 +32,7 @@ abstract class Entity
     /**
      * @return int
      */
-    abstract public function getId() : int;
+    abstract public function getId();
 
     /**
      * @return array

@@ -45,7 +45,7 @@ abstract class Parser
      * @param $var
      * @return null
      */
-    public function getId($var) : int
+    public function getId($var)
     {
         $attr = explode("/", $var);
         return isset($attr[2]) ? $attr[2] : null ;
@@ -57,7 +57,7 @@ abstract class Parser
      * @param $type
      * @return int|null
      */
-    public function getType($type) : int
+    public function getType($type)
     {
         $lt = null;
         switch ($type) {

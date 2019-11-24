@@ -17,18 +17,17 @@ class ResultsParser extends Parser
      */
     public function parse() : array
     {
-        $items = $this->data->find('.results-all .result-con .a-reset');
+        $items = $this->data->find('.results-sublist .result-con .a-reset');
         $data = [];
         /** @var simple_html_dom_node[] $items */
         foreach ($items as $item){
             $url = $item->getAttribute('href');
             $id = $this->getId($url);
-            $result = $this->getResult(trim($item->find('.result-score', 0)->text()));
+            $result = $this->getResult(trim($item->find('.result-score', 0)->plaintext));
             $type = $this->getType(trim($item->find('.map-text', 0)->plaintext));
             $team1 = trim($item->find('.team-cell', 0)->plaintext);
             $team2 = trim($item->find('.team-cell', 1)->plaintext);
             $event = trim(trim($item->find('.event-name', 0)->plaintext));
-            $timestamp = ((int)$item->find('div.time', 0)->getAttribute('data-unix') / 1000);
             $append = [
                 'id' => $id,
                 'status' => Match::STATUS_UPCOMING,
@@ -37,7 +36,6 @@ class ResultsParser extends Parser
                 'url' => $url,
                 'type' => $type,
                 'event' => $event,
-                'timestamp' => $timestamp,
                 'result' => $result,
             ];
             $data[] = $append;
@@ -48,14 +46,8 @@ class ResultsParser extends Parser
     protected function getResult($data)
     {
         $result = explode(' - ', $data);
-        $r1 = (int)$result[0];
-        $r2 = (int)$result[1];
-        if($r1 > $r2) {
-            return 1;
-        } else if($r1 < $r2){
-            return 2;
-        } else {
-            return null;
-        }
+        $r1 = $result[0];
+        $r2 = $result[1];
+        return [$r1 , $r2];
     }
 }

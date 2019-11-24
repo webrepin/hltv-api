@@ -22,7 +22,7 @@ class Match extends Entity
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->getValue('id');
     }
@@ -30,7 +30,7 @@ class Match extends Entity
     /**
      * @return string
      */
-    public function getTeam1() : string
+    public function getTeam1()
     {
         return $this->getValue('team1');
     }
@@ -38,7 +38,7 @@ class Match extends Entity
     /**
      * @return string
      */
-    public function getTeam2() : string
+    public function getTeam2()
     {
         return $this->getValue('team2');
     }
@@ -46,7 +46,7 @@ class Match extends Entity
     /**
      * @return string
      */
-    public function getMatchUrl() : string
+    public function getMatchUrl()
     {
         return $this->getValue('url');
     }
@@ -54,7 +54,7 @@ class Match extends Entity
     /**
      * @return string
      */
-    public function getEvent() : string
+    public function getEvent()
     {
         return $this->getValue('event');
     }
@@ -62,7 +62,7 @@ class Match extends Entity
     /**
      * @return int
      */
-    public function getStatus() : int
+    public function getStatus()
     {
         return $this->getValue('status');
     }
@@ -70,15 +70,23 @@ class Match extends Entity
     /**
      * @return int
      */
-    public function getWinner() : int
+    public function getWinner()
     {
         return $this->getValue('winner');
     }
 
     /**
+     * @return array
+     */
+    public function getResult()
+    {
+        return $this->getValue('result');
+    }
+
+    /**
      * @return string
      */
-    public function getTimestamp() : string
+    public function getTimestamp()
     {
         return $this->getValue('timestamp');
     }
