@@ -4,6 +4,9 @@ namespace HltvApi\Entity;
 use HltvApi\Client;
 /**
  * Class Entity
+ *
+ * @property Client $client
+ * @property array $data
  * @package HltvApi\Entity
  */
 abstract class Entity
@@ -26,7 +29,7 @@ abstract class Entity
     public function __construct(array $data, Client $client)
     {
         $this->data = $data;
-        $this->client;
+        $this->client = $client;
     }
 
     /**

@@ -8,7 +8,6 @@ namespace HltvApi\Entity;
 class MatchDetails extends Match
 {
 
-
     const IS_LIVE = 'LIVE';
     const IS_OVER = 'Match over';
     const IS_POSTPONED = 'Match postponed';
@@ -95,7 +94,7 @@ class MatchDetails extends Match
     /**
      * @return boolean
      */
-    public function getMatchIsOver()
+    public function getMatchIsOver() : bool
     {
         return $this->getValue('time_start') == self::IS_OVER;
     }

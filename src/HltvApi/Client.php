@@ -175,7 +175,7 @@ class Client implements Request
 
     /**
      * @param $link
-     * @return MatchDetails
+     * @return MatchDetails|Entity
      * @throws \Exception
      */
     public function matchDetails($link) : Entity

@@ -33,10 +33,10 @@ class MatchDetailsParser extends Parser
         foreach ($maps as $i => $map) {
             $i++;
 
-            $name = $map->find('.mapname', 0)->text();
+            $name = $map->find('.mapname', 0)->plaintext;
             $mapsNames["map{$i}name"] = $name;
 
-            $result = $map->find('.results', 0)->text();
+            $result = $map->find('.results', 0)->plaintext;
             $result = explode('(', $result);
             $result = isset($result[0]) ? $result[0] : null;
             if($result) {

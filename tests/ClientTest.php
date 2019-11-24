@@ -5,7 +5,6 @@ use HltvApi\Client;
 use HltvApi\Entity\Match;
 use HltvApi\Parsers\OngoingParser;
 use HltvApi\Parsers\UpcomingParser;
-use function Humbug\get_contents;
 use PHPUnit\Framework\TestCase;
 
 /**
