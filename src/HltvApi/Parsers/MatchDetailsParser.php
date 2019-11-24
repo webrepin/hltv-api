@@ -26,24 +26,33 @@ class MatchDetailsParser extends Parser
 
         $maps = $this->data->find('.maps .mapholder');
         $mapsResult = [];
+        $mapsNames = [];
+
+        $time = $this->data->find('.timeAndEvent .countdown', 0)->text();
 
         foreach ($maps as $i => $map) {
+            $i++;
+
+            $name = $map->find('.mapname', 0)->text();
+            $mapsNames["map{$i}name"] = $name;
+
             $result = $map->find('.results', 0)->text();
             $result = explode('(', $result);
             $result = isset($result[0]) ? $result[0] : null;
             if($result) {
                 $result = explode(':', $result);
             }
-            $i++;
+
             $mapsResult["map{$i}score1"] = isset($result[0]) ? $result[0] : null;
             $mapsResult["map{$i}score2"] = isset($result[1]) ? $result[1] : null;
         }
 
         $result = [
             'odds' => [$odds1, $odds2],
+            'time_start' => $time
         ];
 
-        return array_merge($result, $mapsResult);
+        return array_merge($result, $mapsResult, $mapsNames);
     }
 
 }

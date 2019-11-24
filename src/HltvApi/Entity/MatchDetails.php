@@ -11,6 +11,7 @@ class MatchDetails extends Match
 
     const IS_LIVE = 'LIVE';
     const IS_OVER = 'Match over';
+    const IS_POSTPONED = 'Match postponed';
 
     /**
      * Getting a match -up type, declared in parent entity Match
@@ -57,7 +58,7 @@ class MatchDetails extends Match
     {
         $score1 = $this->getValue("map{$map}score1", 0);
         $score2 = $this->getValue("map{$map}score2", 0);
-        if($score1 + $score2 < 30 || abs($score1 - $score2) > 3){
+        if(($score1 != $score2) && ($score1 + $score2 < 30 )|| abs($score1 - $score2) > 3){
             return [$score1, $score2];
         }
         return null;
