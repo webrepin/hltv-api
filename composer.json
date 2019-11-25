@@ -5,6 +5,7 @@
   "type": "library",
   "homepage": "https://github.com/webrepin/hltv-api",
   "license": "MIT",
+  "minimum-stability": "stable",
   "authors": [
     {
       "name": "Konstantin Repin",
