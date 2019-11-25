@@ -44,8 +44,14 @@ class MatchDetails extends Match
      */
     public function getMapStarted(int $map)
     {
-        $score1 = $this->getValue("map{$map}score1", 0) ;
+        $score1 = $this->getValue("map{$map}score1", 0);
         $score2 = $this->getValue("map{$map}score2", 0);
+        if ($map > 1) {
+            $map = $map - 1;
+            if($this->getMapResults($map)) {
+                return true;
+            }
+        }
         return ($score1 + $score2 > 0);
     }
 
