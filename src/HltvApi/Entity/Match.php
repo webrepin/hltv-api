@@ -19,6 +19,8 @@ class Match extends Entity
     const TYPE_BO3 = 3;
     const TYPE_BO5 = 4;
 
+    protected $details;
+
     /**
      * @return int
      */
@@ -97,6 +99,6 @@ class Match extends Entity
      */
     public function details() : MatchDetails
     {
-        return $this->client->matchDetails($this->getMatchUrl());
+        return $this->details ?? $this->details = $this->client->matchDetails($this->getMatchUrl());
     }
 }
