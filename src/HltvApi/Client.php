@@ -106,7 +106,7 @@ class Client implements Request
                 curl_setopt ($ch, CURLOPT_PROXYTYPE, $proxy->type());
             }
             curl_setopt ($ch, CURLOPT_RETURNTRANSFER, TRUE);
-            curl_setopt ($ch, CURLOPT_FAILONERROR, false);
+            curl_setopt ($ch, CURLOPT_FAILONERROR, true);
             curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, 1);
             $result = curl_exec($ch);
             curl_close ($ch);
