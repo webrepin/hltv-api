@@ -9,19 +9,34 @@ namespace HltvApi\Parsers;
 class MatchDetailsParser extends Parser
 {
 
+    const ODDS_PROVIDERS = [
+        'egb-nolink',
+        'ggbet-odds',
+        'onexbet-odds',
+        'sts-intl',
+        'skrilla-odds',
+        'thunderfire-odds',
+        'parimatch-odds',
+        'unikrn-odds',
+    ];
+
     /**
      * Parse implementation of Parser base class. Should returning a row of match details data
      * @throws \Exception
      */
     public function parse() : array
     {
+        foreach (static::ODDS_PROVIDERS as $name) {
 
-        $odds1 = $this->data->find('.betting-listing .egb-nolink .odds-cell', 0);
-        $odds2 = $this->data->find('.betting-listing .egb-nolink .odds-cell', 2);
+            $selector = ".betting-listing .{$name} .odds-cell";
+            $odds1 = $this->data->find($selector, 0);
+            $odds2 = $this->data->find($selector, 2);
 
-        if($odds1 && $odds2)  {
-            $odds1 = (double) trim($odds1->text());
-            $odds2 = (double) trim($odds2->text()) ;
+            if($odds1 && $odds2)  {
+                $odds1 = (double) trim($odds1->text());
+                $odds2 = (double) trim($odds2->text()) ;
+                break;
+            }
         }
 
         $maps = $this->data->find('.maps .mapholder');
