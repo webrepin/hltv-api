@@ -94,17 +94,19 @@ class Client implements Request
      */
     public function sendRequest($url = null, $method = 'GET') : string
     {
+        $result = '';
         if( $ch = curl_init ())
         {
             $proxy = $this->createProxy();
             curl_setopt ($ch, CURLOPT_URL, $url);
-            curl_setopt ($ch, CURLOPT_TIMEOUT, 60);
+            curl_setopt ($ch, CURLOPT_MAXREDIRS, 10);
+            curl_setopt ($ch, CURLOPT_TIMEOUT, 180);
             if($proxy) {
                 curl_setopt ($ch, CURLOPT_PROXY, "{$proxy->ip()}:{$proxy->port()}");
                 curl_setopt ($ch, CURLOPT_PROXYTYPE, $proxy->type());
             }
             curl_setopt ($ch, CURLOPT_RETURNTRANSFER, TRUE);
-            curl_setopt ($ch, CURLOPT_FAILONERROR, true);
+            curl_setopt ($ch, CURLOPT_FAILONERROR, false);
             curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, 1);
             $result = curl_exec($ch);
             curl_close ($ch);
@@ -178,7 +180,7 @@ class Client implements Request
      * @return MatchDetails|Entity
      * @throws \Exception
      */
-    public function matchDetails($link) : Entity
+    public function matchDetails(string $link) : Entity
     {
         $parser = $this->createDataParser(MatchDetailsParser::class, $this->getUrlDetails($link));
         return (new BaseWrapper(MatchDetails::class, $parser->parse(), $this))->fetchRow();

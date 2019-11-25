@@ -20,8 +20,8 @@ class MatchDetailsParser extends Parser
         $odds2 = $this->data->find('.betting-listing .egb-nolink .odds-cell', 2);
 
         if($odds1 && $odds2)  {
-            $odds1 = (int) trim($odds1->text());
-            $odds2 = (int) trim($odds2->text()) ;
+            $odds1 = (double) trim($odds1->text());
+            $odds2 = (double) trim($odds2->text()) ;
         }
 
         $maps = $this->data->find('.maps .mapholder');

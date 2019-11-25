@@ -46,7 +46,7 @@ class MatchDetails extends Match
     {
         $score1 = $this->getValue("map{$map}score1", 0) ;
         $score2 = $this->getValue("map{$map}score2", 0);
-        return $score1 + $score2 > 0;
+        return ($score1 + $score2 > 0);
     }
 
     /**
