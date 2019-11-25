@@ -38,4 +38,4 @@ use HltvApi\Client;
 | ongoing                      | https://www.hltv.org/matches                                                     |
 | upcoming                     | https://www.hltv.org/matches                                                     |
 | results                      | https://www.hltv.org/results                                                     |
-| matchDetails                 | https://www.hltv.org/matches/*                                                 |
+| matchDetails                 | https://www.hltv.org/matches/xxxx-xxxx-xxxxx                                                 |
