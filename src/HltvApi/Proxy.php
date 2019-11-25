@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: user
- * Date: 31.10.2019
- * Time: 1:36
- */
-
 namespace HltvApi;
 
 
