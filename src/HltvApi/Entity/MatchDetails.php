@@ -63,7 +63,9 @@ class MatchDetails extends Match
     {
         $score1 = $this->getValue("map{$map}score1", 0);
         $score2 = $this->getValue("map{$map}score2", 0);
-        if(($score1 != $score2) && ($score1 + $score2 < 30 )|| abs($score1 - $score2) > 3){
+
+        if((($score1 != $score2) && ($score1 > 15 || $score2 > 15))
+            || (($score1 + $score2 > 30) && abs($score1 - $score2) > 3)){
             return [$score1, $score2];
         }
         return null;
