@@ -51,13 +51,15 @@ class MatchDetailsParser extends Parser
             $name = $map->find('.mapname', 0)->plaintext;
             $mapsNames["map{$i}name"] = $name;
 
-            $result = $map->find('.results', 0)->plaintext;
-            $result = explode('(', $result);
-            $result = isset($result[0]) ? $result[0] : null;
-            if($result) {
-                $result = explode(':', $result);
+            $result = [];
+            if( $map->find('.results', 0)) {
+                $result = $map->find('.results', 0)->plaintext;
+                $result = explode('(', $result);
+                $result = isset($result[0]) ? $result[0] : null;
+                if($result) {
+                    $result = explode(':', $result);
+                }
             }
-
             $mapsResult["map{$i}score1"] = isset($result[0]) ? $result[0] : null;
             $mapsResult["map{$i}score2"] = isset($result[1]) ? $result[1] : null;
         }
