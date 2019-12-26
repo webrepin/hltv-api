@@ -11,13 +11,6 @@ class MatchDetailsParser extends Parser
 
     const ODDS_PROVIDERS = [
         'egb-nolink',
-        'ggbet-odds',
-        'onexbet-odds',
-        'sts-intl',
-        'skrilla-odds',
-        'thunderfire-odds',
-        'parimatch-odds',
-        'unikrn-odds',
     ];
 
     /**
@@ -46,22 +39,19 @@ class MatchDetailsParser extends Parser
         $time = $this->data->find('.timeAndEvent .countdown', 0)->text();
 
         foreach ($maps as $i => $map) {
-            $i++;
-
+            $mapN = $i + 1;
             $name = $map->find('.mapname', 0)->plaintext;
-            $mapsNames["map{$i}name"] = $name;
+            $mapsNames["map{$mapN}name"] = $name;
 
-            $result = [];
             if( $map->find('.results', 0)) {
-                $result = $map->find('.results', 0)->plaintext;
-                $result = explode('(', $result);
-                $result = isset($result[0]) ? $result[0] : null;
-                if($result) {
-                    $result = explode(':', $result);
-                }
+                $resultLeft = $map->find('.results-left .results-team-score', 0)->plaintext;
+                $resultRight = $map->find('.results-right .results-team-score', 0)->plaintext;
+                $resultLeft = trim($resultLeft);
+                $resultRight = trim($resultRight);
+                $mapsResult["map{$mapN}score1"] = $resultLeft;
+                $mapsResult["map{$mapN}score2"] = $resultRight;
             }
-            $mapsResult["map{$i}score1"] = isset($result[0]) ? $result[0] : null;
-            $mapsResult["map{$i}score2"] = isset($result[1]) ? $result[1] : null;
+
         }
 
         $result = [
