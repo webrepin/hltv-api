@@ -21,7 +21,7 @@ class MatchDetailsParser extends Parser
     {
         foreach (static::ODDS_PROVIDERS as $name) {
 
-            $selector = ".betting-listing .{$name} .odds-cell";
+            $selector = ".{$name} .odds-cell";
             $odds1 = $this->data->find($selector, 0);
             $odds2 = $this->data->find($selector, 2);
 
