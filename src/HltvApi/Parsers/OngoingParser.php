@@ -46,16 +46,23 @@ class OngoingParser extends Parser
      */
     public function parse() : array
     {
-        $items = $this->data->find('.live-matches .live-match .a-reset');
+        $items = $this->data->find('.liveMatch-container');
 
         $data = [];
         /** @var simple_html_dom_node[] $items */
         foreach ($items as $item){
-            $url = $item->getAttribute('href');
+            $link = $item->find('.a-reset', 0);
+            $url = $link ? $link->getAttribute('href') : '';
             $id = $this->getId($url);
-            $type = $this->getType(trim($item->find('.bestof', 0)->plaintext));
-            $team1 = trim($item->find('.teams .team-name', 0)->plaintext);
-            $team2 = trim($item->find('.teams .team-name', 1)->plaintext);
+            $type = $this->getType(trim($item->find('.matchMeta', 0)->plaintext));
+            $team1 = trim($item->find('.matchTeamName', 0)->plaintext);
+            if (!$team1) {
+                $team1 = trim($item->find('.team1 .team', 0)->plaintext);
+            }
+            $team2 = trim($item->find('.matchTeamName', 1)->plaintext);
+            if (!$team2) {
+                $team2 = trim($item->find('.team2 .team', 0)->plaintext);
+            }
             $append = [
                 'id' => $id,
                 'status' => Match::STATUS_ONGOING,

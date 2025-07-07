@@ -28,20 +28,26 @@ class UpcomingParser extends Parser
         $items = [];
         while ($idx < $this->days) {
             $idx++;
-            $day = $this->data->find('.upcoming-matches .match-day',0);
-            $items = array_merge($items, $day->find(' .upcoming-match'));
+            $items = array_merge($items, $this->data->find('.upcomingMatch')); 
         }
 
         $data = [];
         /** @var simple_html_dom_node[] $items */
         foreach ($items as $item){
-            $url = $item->find('.a-reset', 0)->getAttribute('href');
+            $link = $item->find('.a-reset', 0);
+            $url = $link ? $link->getAttribute('href') : '';
             $id = $this->getId($url);
-            $type = $this->getType(trim($item->find('.map-text', 0)->plaintext));
-            $team1 = trim($item->find('.team-cell', 0)->plaintext);
-            $team2 = trim($item->find('.team-cell', 1)->plaintext);
-            $event = trim(trim($item->find('.event-name', 0)->plaintext));
-            $timestamp = ((int)$item->find('div.time', 0)->getAttribute('data-unix') / 1000);
+            $type = $this->getType(trim($item->find('.matchMeta', 0)->plaintext));
+            $team1 = trim($item->find('.matchTeamName', 0)->plaintext);
+            if (!$team1) {
+                $team1 = trim($item->find('.team1 .team', 0)->plaintext);
+            }
+            $team2 = trim($item->find('.matchTeamName', 1)->plaintext);
+            if (!$team2) {
+                $team2 = trim($item->find('.team2 .team', 0)->plaintext);
+            }
+            $event = trim($item->find('.matchEventLogo', 0)->getAttribute('title'));
+            $timestamp = ((int)$item->find('.matchTime', 0)->getAttribute('data-unix') / 1000);
             $append = [
                 'id' => $id,
                 'status' => Match::STATUS_UPCOMING,

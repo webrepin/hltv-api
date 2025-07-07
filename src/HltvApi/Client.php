@@ -21,7 +21,7 @@ class Client implements Request
     /**
      * Hltv WebAPI base URL
      */
-    const BASE_URL = 'https://hltv.org';
+    const BASE_URL = 'https://www.hltv.org';
 
     /**
      * Array for proxy list (optional)

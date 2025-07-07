@@ -17,17 +17,18 @@ class ResultsParser extends Parser
      */
     public function parse() : array
     {
-        $items = $this->data->find('.results-sublist .result-con .a-reset');
+        $items = $this->data->find('.result-con');
         $data = [];
         /** @var simple_html_dom_node[] $items */
         foreach ($items as $item){
-            $url = $item->getAttribute('href');
+            $link = $item->find('.a-reset', 0) ?: $item->children(0);
+            $url = $link ? $link->getAttribute('href') : '';
             $id = $this->getId($url);
             $result = $this->getResult(trim($item->find('.result-score', 0)->plaintext));
             $type = $this->getType(trim($item->find('.map-text', 0)->plaintext));
-            $team1 = trim($item->find('.team-cell', 0)->plaintext);
-            $team2 = trim($item->find('.team-cell', 1)->plaintext);
-            $event = trim(trim($item->find('.event-name', 0)->plaintext));
+            $team1 = trim($item->find('.team', 0)->plaintext);
+            $team2 = trim($item->find('.team', 1)->plaintext);
+            $event = trim($item->find('.matchEventLogo', 0)->getAttribute('title'));
             $append = [
                 'id' => $id,
                 'status' => Match::STATUS_UPCOMING,
